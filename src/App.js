@@ -8,11 +8,19 @@ const App = ()=>{
 
   )
 }
+// const Component = (props) => {
+//   const array = []
+//   for(let i=0;i<props.numbers.length;i++){
+//     array.push(<div>下标{i}值为{props.numbers[i]}</div>)
+//   }
+//   return <div>{ array }</div>
+// }
+
 const Component = (props) => {
-  const array = []
-  for(let i=0;i<props.numbers.length;i++){
-    array.push(<div>下标{i}值为{props.numbers[i]}</div>)
-  }
-  return <div>{ array }</div>
-}
+  return ( <div>
+    {  props.numbers.map((n,index)=>{
+      return <div>下标{index}值为{n}</div>
+    })}
+  </div>)
+ }
 export default App
