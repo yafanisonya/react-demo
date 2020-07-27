@@ -7,7 +7,7 @@ function App(){
   return (
     <div className="App">
       Outer
-      <Son/>
+      <Son messageForSon="Middle 你好" />
     </div>
   )
 }
@@ -25,18 +25,22 @@ class Son extends React.Component{
   render(){
     return (
       <div className="Son">
+        Outer传递参数：{this.props.messageForSon}
+        <hr/>
         Middle n: {this.state.n}
         <button onClick={()=> this.add()}> +1 </button>
-        <Grandson/>
+        <Grandson messageForGrandson="inner 你好"/>
       </div>
     );
   }
 }
 
-const Grandson = ()=>{
+const Grandson = (props)=>{
   const [n,setN] = React.useState(0);
   return(
     <div className="Grandson">
+      Middle传递参数：{props.messageForGrandson}
+        <hr/>
         Inner n: {n}
         <button onClick={()=>setN(n+1)}>+1</button>
     </div>
