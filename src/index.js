@@ -20,7 +20,14 @@ class Son extends React.Component{
     };
   }
   add(){
-    this.setState({n: this.state.n + 1 });
+    // this.setState({n: this.state.n + 1 });
+    // console.log(this.state.n)
+
+    this.setState((state)=>{
+      const n = this.state.n + 1
+      console.log(n)
+      return {n}
+    });
   }
   render(){
     return (
