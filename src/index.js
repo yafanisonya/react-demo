@@ -69,25 +69,25 @@ class Son extends React.Component{
 }
 
 const Grandson = (props)=>{
-  // const [n,setN] = React.useState(0);
-  // const [m,setM] = React.useState(0);
-  const [state,setState] = React.useState({
-    n:0,
-    m:0
-  })
+  const [n,setN] = React.useState(0);
+  const [m,setM] = React.useState(0);
+  // const [state,setState] = React.useState({
+  //   n:0,
+  //   m:0
+  // })
 
   return(
     <div className="Grandson">
       Middle传递参数：{props.messageForGrandson}
       <hr/>
-      {/*Inner n: {n}*/}
-      {/*<button onClick={()=> setN(n+1)}>n+1</button>*/}
-      {/*Inner m: {m}*/}
-      {/*<button onClick={()=> setM(m+1)}>m+1</button>*/}
-      Inner n: {state.n}
-      <button onClick={()=> setState({...state,n :  state.n + 1})}> n + 1 </button>
-      Inner m: {state.m}
-      <button onClick={()=>setState({...state, m :  state.m + 1})}> m + 1 </button>
+      Inner n: {n}
+      <button onClick={()=> setN(n+1)}>n+1</button>
+      Inner m: {m}
+      <button onClick={()=> setM(m+1)}>m+1</button>
+      {/*Inner n: {state.n}*/}
+      {/*<button onClick={()=> setState({...state,n :  state.n + 1})}> n + 1 </button>*/}
+      {/*Inner m: {state.m}*/}
+      {/*<button onClick={()=>setState({...state, m :  state.m + 1})}> m + 1 </button>*/}
     </div>
   );
 };
