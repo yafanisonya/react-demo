@@ -1,26 +1,37 @@
 import React from 'react'
-const App = ()=>{
-  return (
-    <div>
-      App
-      <Component numbers={['a','b','c']}/>
-    </div>
 
-  )
+export default class Parent extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {name:'fanison',n:1}
+  }
+  onClick = ()=>{
+    this.setState((state)=>{
+      return {n:state.n + 1}
+    })
+  }
+  render(){
+    return <B name={this.state.name} onClick={this.onClick} n={this.state.n}> hi </B>
+  }
 }
-// const Component = (props) => {
-//   const array = []
-//   for(let i=0;i<props.numbers.length;i++){
-//     array.push(<div>下标{i}值为{props.numbers[i]}</div>)
-//   }
-//   return <div>{ array }</div>
-// }
 
-const Component = (props) => {
-  return ( <div>
-    {  props.numbers.map((n,index)=>{
-      return <div>下标{index}值为{n}</div>
-    })}
-  </div>)
- }
-export default App
+class B extends React.Component{
+  constructor(props){
+    super(props)      // this.props 就是外部数据对象的地址
+  }
+  render(){
+    return (<div>
+        {this.props.children},
+        {this.props.name}
+        <div>
+          {this.props.n}
+          <button onClick={this.props.onClick}>+1</button>
+        </div>
+      </div>
+    )
+  }
+  componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
+    console.log(this.props);
+    console.log(nextProps)
+  }
+}
