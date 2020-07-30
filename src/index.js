@@ -23,6 +23,7 @@ class Son extends React.Component{
         age: 18
       }
     };
+    this.addM = () => this.setState({m: this.state.m + 1});
   }
   addN(){
     // this.setState({n: this.state.n + 1 });
@@ -37,6 +38,8 @@ class Son extends React.Component{
   addM(){
     this.setState({m: this.state.m + 1});
   }
+
+  //addM = () => this.setState({m: this.state.m + 1});
   changeUser(){
       this.setState({
         user:{
