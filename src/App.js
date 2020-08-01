@@ -11,21 +11,21 @@ class App extends React.PureComponent{
     this.setState(state => ({n: state.n +1}));
     this.setState(state =>({n: state.n - 1}));
   };
-  // shouldComponentUpdate(nextProps,nextState){
-  //   if(nextState.n === this.state.n){
-  //     return false
-  //   }else{
-  //     return true
-  //   }
-  // }
   render(){
-    console.log('render了一次')
-    return(
-      <div>
-        {this.state.n}
-        <button onClick={this.onClick}>+1-1</button>
-      </div>
+    const x = (
+      //<React.Fragment>
+        <>
+        <div>hi</div>
+        <div>
+          {this.state.n}
+          <button onClick={this.onClick}>+1-1</button>
+        </div>
+        </>
+      //</React.Fragment>
+
     )
+    console.log(x); //虚拟DOM
+    return x
   }
 }
 export default App;
