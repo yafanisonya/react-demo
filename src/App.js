@@ -1,6 +1,6 @@
 import React from 'react'
 
-class App extends React.Component{
+class App extends React.PureComponent{
   constructor(props) {
     super(props);
     this.state = {
@@ -11,13 +11,13 @@ class App extends React.Component{
     this.setState(state => ({n: state.n +1}));
     this.setState(state =>({n: state.n - 1}));
   };
-  shouldComponentUpdate(nextProps,nextState){
-    if(nextState.n === this.state.n){
-      return false
-    }else{
-      return true
-    }
-  }
+  // shouldComponentUpdate(nextProps,nextState){
+  //   if(nextState.n === this.state.n){
+  //     return false
+  //   }else{
+  //     return true
+  //   }
+  // }
   render(){
     console.log('render了一次')
     return(
