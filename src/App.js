@@ -5,35 +5,32 @@ class App extends React.PureComponent{
     super(props);
     this.state = {
       n : 1,
-      array:[1,2,3]
+      array:[1,2,3],
+      width:undefined
     };
+    this.divRef = React.createRef();
   }
   onClick = () =>{
     this.setState(state => ({n: state.n +1}));
   };
+  componentDidMount(): void {
+    // const div = document.getElementById('xxx')
+    // console.log(div)
+    // const width = div.getBoundingClientRect().width
+    // this.setState({width:width})
+
+    const div2 = this.divRef.current;
+    console.log(div2)
+    const {width} = div2.getBoundingClientRect()
+    this.setState({width:width})
+  }
+
   render(){
-    let message
-    if(this.state.n % 2 ===0 ){
-      message = <div>偶数</div>
-    }else{
-      message = <div>奇数</div>
-    }
-    let result = []
-    for(let i=0;i<this.state.array.length;i++){
-      result.push(this.state.array[i])
-    }
     return(
-      <div>
-        {message}
-        {this.state.n % 2 === 0 ? <div>偶数</div>:<span>奇数</span>}
-        {this.state.n % 2 === 0 ? <div>偶数</div>:null}
-        {this.state.n % 2 === 0 && <div>偶数</div>}
-        <button onClick={this.onClick}>+1</button>
-        <hr/>
-        {this.state.array.map(n=><span key={n}>{n}</span>)}
-        <hr/>
-        {result}
-      </div>
+      <>
+      {/*<div id="xxx">GetElementById: {this.state.width}</div>*/}
+      <div ref={this.divRef}>Hello,World,{this.state.width} px </div>
+      </>
     )
   }
 }
