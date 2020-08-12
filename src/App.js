@@ -1,37 +1,21 @@
 import React from 'react'
 
-class App extends React.PureComponent{
-  constructor(props) {
-    super(props);
-    this.state = {
-      n : 1,
-      array:[1,2,3],
-      width:undefined
-    };
-    this.divRef = React.createRef();
+class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { n: 1 }
   }
-  onClick = () =>{
-    this.setState(state => ({n: state.n +1}));
-  };
-  componentDidMount(): void {
-    // const div = document.getElementById('xxx')
-    // console.log(div)
-    // const width = div.getBoundingClientRect().width
-    // this.setState({width:width})
-
-    const div2 = this.divRef.current;
-    console.log(div2)
-    const {width} = div2.getBoundingClientRect()
-    this.setState({width:width})
+  onClick = () => {
+    this.setState(state => ({ n: state.n + 1 }))
   }
-
-  render(){
-    return(
-      <>
-      {/*<div id="xxx">GetElementById: {this.state.width}</div>*/}
-      <div ref={this.divRef}>Hello,World,{this.state.width} px </div>
-      </>
-    )
-  }
+  render () {
+    return {
+      < div >
+      { this.state.n }
+      < button onClick = { this.onClick } > +1 </button >
+      </div >
+    }
 }
+}
+
 export default App;
