@@ -1,12 +1,13 @@
 import React from 'react'
+const rootElement = document.getElementById('root');
 
 function App () {
-  function handleClick (e) {
-    e.preventDefault()
-    console.log('The link was clicked')
-  }
+  const [n, setN] = React.useState(0);
   return (
-    <a href="#"></a>
+    <div className="App">
+      <p>{n}</p>
+      <p><button onClick={() => setN(n + 1)}>+1</button></p>
+    </div>
   )
 }
 export default App;
