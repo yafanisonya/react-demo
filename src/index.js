@@ -2,13 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 const rootElement = document.getElementById('root');
 
+let _state
+
 function myUseState (initialValue) {
-  var state = initialValue;
+  _state = _state === undefined ? initialValue : _state;
   function setState (newState) {
-    state = newState;
+    _state = newState;
     render();
   }
-  return [state, setState]
+  return [_state, setState]
 }
 const render = () => ReactDOM.render(<App />, rootElement)
 
