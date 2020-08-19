@@ -5,7 +5,7 @@ const rootElement = document.getElementById('root');
 let _state
 
 function myUseState (initialValue) {
-  _state = _state === undefined ? initialValue : _state;
+  _state = _state || initialValue;
   function setState (newState) {
     _state = newState;
     render();
@@ -16,10 +16,16 @@ const render = () => ReactDOM.render(<App />, rootElement)
 
 function App () {
   const [n, setN] = myUseState(0);
+  const [m, setM] = myUseState(0);
   return (
     <div className="App">
       <p>{n}</p>
       <p><button onClick={() => setN(n + 1)}>+1</button></p>
+
+      <p>{m}</p>
+      <p>
+        <button onClick={() => setM(m + 1)}>+1</button>
+      </p>
     </div>
   )
 }
