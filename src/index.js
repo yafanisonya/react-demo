@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom'
 const rootElement = document.getElementById('root');
 
 function App () {
-  const [n, setN] = React.useState(0);
-  const log = () => setTimeout(() => console.log(`n: ${n}`), 3000)
+  const nRef = React.useRef(0);
+  const log = () => setTimeout(() => console.log(`n: ${nRef.current}`), 3000)
   return (
     <div className="App">
-      <p>{n}</p>
+      <p>{nRef.current}</p>
       <p>
-        <button onClick={() => setN(n + 1)}>+1</button>
+        <button onClick={() => (nRef.current += 1)}>+1</button>
         <button onClick={log}>log</button>
       </p>
     </div>
