@@ -1,19 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-const rootElement = document.getElementById('root');
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 function App () {
-  const nRef = React.useRef(0);
-  const log = () => setTimeout(() => console.log(`n: ${nRef.current}`), 3000)
+  const [user, setUser] = useState({ name: 'fanison', age: 18 })
+  const onClick = () => {
+    setUser({
+      name: 'yafanison'
+    })
+  }
   return (
     <div className="App">
-      <p>{nRef.current}</p>
-      <p>
-        <button onClick={() => (nRef.current += 1)}>+1</button>
-        <button onClick={log}>log</button>
-      </p>
+      <h1>{user.name}</h1>
+      <h2>{user.age}</h2>
+      <button onClick={onClick}></button>
     </div>
   )
 }
 
+const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
