@@ -1,45 +1,41 @@
-import React, { useReducer, useContext, useEffect } from "react"
+import React, { createContext, useState, useContext } from 'react'
 import ReactDOM from 'react-dom'
-import User from "./components/user"
-import Context from './Context'
-import Books from './components/books'
-import Movies from './components/movies'
-import userReducer from './reducers/user_reducer'
-import booksReducer from './reducers/books_reducer'
-import moviesReducer from './reducers/movies_reducer'
 
-const store = {
-  user: null,
-  books: null,
-  movies: null
-}
+import "./style.css"
 
-const obj = {
-  ...userReducer,
-  ...booksReducer,
-  ...moviesReducer
-}
-
-function reducer (state, action) {
-  const fn = obj[action.type]
-  if (fn) {
-    return fn(state, action)
-  } else {
-    console.error("wrong type")
-  }
-}
+const C = createContext(null);
 
 function App () {
-  const [state, dispatch] = useReducer(reducer, store);
-
-  const api = { state, dispatch };
+  console.log("App执行了");
+  const [n, setN] = useState(0);
   return (
-    <Context.Provider value={api}>
-      <User />
-      <hr />
-      <Books />
-      <Movies />
-    </Context.Provider>
+    <C.Provider value={{ n, setN }}>
+      <div className="App">
+        <Baba />
+      </div>
+    </C.Provider>
+  )
+}
+
+function Baba () {
+  const { n, setN } = useContext(C);
+  return (
+    <div>
+      我是outer n:{n} <Child />
+    </div>
+  )
+}
+
+function Child () {
+  const { n, setN } = useContext(C);
+  const onClick = () => {
+    setN(i => i + 1)
+  };
+  return (
+    <div>
+      我是inner 我得到的 n: {n}
+      <button onClick={onClick}>+1</button>
+    </div>
   )
 }
 
