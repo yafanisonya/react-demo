@@ -1,39 +1,58 @@
 import React, { useReducer } from "react"
 import ReactDOM from "react-dom"
 
-const initial = { n: 0 };
+const initFormData = {
+  name: '',
+  age: 18,
+  nationality: "汉族"
+}
 
-const reducer = (state, action) => {
-  if (action.type === "add") {
-    return { n: state.n + action.number };
-  } else if (action.type === "multi") {
-    return { n: state.n * 2 };
-  } else {
-    throw new Error("unknown type");
+function reducer (state, action) {
+  switch (action.type) {
+    case "patch":
+      return { ...state, ...action.formData };
+    case "reset":
+      return initFormData;
+    default:
+      throw new Error();
   }
-};
+}
 
 function App () {
-  const [state, dispatch] = useReducer(reducer, initial);
-  const { n } = state
-  const onClick = () => {
-    dispatch({ type: "add", number: 1 });
+  const [formData, dispatch] = useReducer(reducer, initFormData);
+  const onSubmit = () => { };
+  const onReset = () => {
+    dispatch({ type: "reset" });
   };
-  const onClick2 = () => {
-    dispatch({ type: "add", number: 2 });
-  };
-  const onClick3 = () => {
-    dispatch({ type: "multi" })
-  }
   return (
-    <div className="App">
-      <h1>n: {n}</h1>
-      <button onClick={onClick}>+1</button>
-      <button onClick={onClick2}>+2</button>
-      <button onClick={onClick3}>*2</button>
-    </div>
+    <form onSubmit={onSubmit} onReset={onReset}>
+      <div>
+        <label>
+          姓名
+          <input value={formData.name} onChange={e => dispatch({ type: "patch", formData: { name: e.target.value } })} />
+        </label>
+      </div>
+      <div>
+        <label>
+          年龄
+          <input value={formData.age} onChange={e => dispatch({ type: "patch", formData: { age: e.target.value } })} />
+        </label>
+      </div>
+      <div>
+        <label>
+          民族
+          <input value={formData.nationality} onChange={e => dispatch({ type: "patch", formData: { nationality: e.target.value } })} />
+        </label>
+      </div>
+      <div>
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+      </div>
+      <hr />
+      {JSON.stringify(formData)}
+    </form >
   )
 }
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
